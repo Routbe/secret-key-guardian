@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BadgeCheck, Mail } from "lucide-react";
 import { blockHref, themeOf, type ProfileRecord } from "@/lib/profile";
 import { SocialPlatformIcon } from "@/lib/social-icons";
+import { PLATFORM_LABEL, formatFollowers } from "@/lib/social-verify";
 import { BadgeShowcase } from "@/components/profile/BadgeShowcase";
 import { VerifiedInfoDialog } from "@/components/profile/VerifiedInfoDialog";
 import { monthYear } from "@/components/profile/VerifiedBadgePopover";
