@@ -95,6 +95,7 @@ import {
 import { SubdomainPanel } from "@/components/dashboard/SubdomainPanel";
 import { BadgesPanel } from "@/components/dashboard/BadgesPanel";
 import { SocialVerifyPanel } from "@/components/dashboard/SocialVerifyPanel";
+import { ProfileQrCard } from "@/components/dashboard/ProfileQrCard";
 import { ReferralPanel } from "@/components/dashboard/ReferralPanel";
 import { ReferralAnalytics } from "@/components/dashboard/ReferralAnalytics";
 import { BadgeActivityPanel } from "@/components/dashboard/BadgeActivityPanel";
@@ -853,6 +854,12 @@ export function ProfileEditor() {
               </section>
 
               <SocialVerifyPanel handle={normalized || handle} />
+
+              <ProfileQrCard
+                handle={normalized || handle}
+                urlStyle={urlStyle}
+                theme={theme}
+              />
 
               <BadgesPanel />
               <BadgeActivityPanel />
