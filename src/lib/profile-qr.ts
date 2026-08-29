@@ -90,6 +90,24 @@ function inEmblemZone(x: number, y: number, count: number): boolean {
 /* ------------------------------------------------------------- SVG export */
 
 /**
+ * ROUT Rabbit-embleem als inline vector op een 100×100 canvas. Inline (geen
+ * <image href>) zodat elke export zelfstandig blijft: geen CORS, geen
+ * ontbrekende assets bij het printen.
+ */
+export function routRabbitMarkup(color: string): string {
+  return [
+    `<rect width="100" height="100" rx="18" fill="${color}"/>`,
+    `<g fill="#FFFFFF">`,
+    `<path d="M36 20c3.6 0 6 5.6 6.6 13.4C45 32.5 47.4 32 50 32s5 .5 7.4 1.4C58 25.6 60.4 20 64 20c4.4 0 7.6 8.4 6.4 20.4C74.6 45 77 50.8 77 57c0 15-12 24-27 24S23 72 23 57c0-6.2 2.4-12 6.6-16.6C28.4 28.4 31.6 20 36 20z"/>`,
+    `</g>`,
+    `<g fill="${color}">`,
+    `<circle cx="41" cy="57" r="4"/><circle cx="59" cy="57" r="4"/>`,
+    `<path d="M50 65c3 0 5 1.6 5 3.6 0 2.2-2.4 3.4-5 3.4s-5-1.2-5-3.4c0-2 2-3.6 5-3.6z"/>`,
+    `</g>`,
+  ].join("");
+}
+
+/**
  * Print-klare vector-SVG. Volledig zelf gerenderd zodat de export exact
  * overeenkomt met de PDF (dezelfde modules, dezelfde uitsparing).
  */
