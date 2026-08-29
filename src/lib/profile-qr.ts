@@ -125,14 +125,13 @@ export function profileQrSvg(
     }
   }
 
-  const emblem =
-    style.emblem && options.emblemHref
-      ? (() => {
-          const zone = unit * (Math.max(2, Math.round(count * 0.09)) * 2 + 1);
-          const offset = (size - zone) / 2;
-          return `<image href="${options.emblemHref}" x="${offset.toFixed(2)}" y="${offset.toFixed(2)}" width="${zone.toFixed(2)}" height="${zone.toFixed(2)}" preserveAspectRatio="xMidYMid meet"/>`;
-        })()
-      : "";
+  const emblem = style.emblem
+    ? (() => {
+        const zone = unit * (Math.max(2, Math.round(count * 0.09)) * 2 + 1);
+        const offset = (size - zone) / 2;
+        return `<g transform="translate(${offset.toFixed(2)} ${offset.toFixed(2)}) scale(${(zone / 100).toFixed(4)})">${routRabbitMarkup(style.fgColor)}</g>`;
+      })()
+    : "";
 
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges">`,
