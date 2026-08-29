@@ -70,6 +70,7 @@ import { Route as UUsernameDonateRouteImport } from './routes/u.$username.donate
 import { Route as ApiAuthProviderCallbackRouteImport } from './routes/api_.auth.$provider.callback'
 import { Route as ApiPublicAuthProviderRouteImport } from './routes/api_.public.auth.$provider'
 import { Route as ApiPublicAuthMagicLinkRouteImport } from './routes/api_.public.auth.magic-link'
+import { Route as ApiPublicBadgeHandleRouteImport } from './routes/api_.public.badge.$handle'
 import { Route as ApiPublicCronSecureshieldBillingRouteImport } from './routes/api_.public.cron.secureshield-billing'
 import { Route as ApiPublicCronSyncSocialsRouteImport } from './routes/api_.public.cron.sync-socials'
 import { Route as ApiPublicWebhooksBankingRouteImport } from './routes/api_.public.webhooks.banking'
@@ -385,6 +386,11 @@ const ApiPublicAuthMagicLinkRoute = ApiPublicAuthMagicLinkRouteImport.update({
   path: '/api/public/auth/magic-link',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBadgeHandleRoute = ApiPublicBadgeHandleRouteImport.update({
+  id: '/api_/public/badge/$handle',
+  path: '/api/public/badge/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicCronSecureshieldBillingRoute =
   ApiPublicCronSecureshieldBillingRouteImport.update({
     id: '/api_/public/cron/secureshield-billing',
@@ -471,6 +477,7 @@ export interface FileRoutesByFullPath {
   '/api/auth/$provider/callback': typeof ApiAuthProviderCallbackRoute
   '/api/public/auth/$provider': typeof ApiPublicAuthProviderRouteWithChildren
   '/api/public/auth/magic-link': typeof ApiPublicAuthMagicLinkRoute
+  '/api/public/badge/$handle': typeof ApiPublicBadgeHandleRoute
   '/api/public/cron/secureshield-billing': typeof ApiPublicCronSecureshieldBillingRoute
   '/api/public/cron/sync-socials': typeof ApiPublicCronSyncSocialsRoute
   '/api/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
@@ -537,6 +544,7 @@ export interface FileRoutesByTo {
   '/api/auth/$provider/callback': typeof ApiAuthProviderCallbackRoute
   '/api/public/auth/$provider': typeof ApiPublicAuthProviderRouteWithChildren
   '/api/public/auth/magic-link': typeof ApiPublicAuthMagicLinkRoute
+  '/api/public/badge/$handle': typeof ApiPublicBadgeHandleRoute
   '/api/public/cron/secureshield-billing': typeof ApiPublicCronSecureshieldBillingRoute
   '/api/public/cron/sync-socials': typeof ApiPublicCronSyncSocialsRoute
   '/api/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
@@ -605,6 +613,7 @@ export interface FileRoutesById {
   '/api_/auth/$provider/callback': typeof ApiAuthProviderCallbackRoute
   '/api_/public/auth/$provider': typeof ApiPublicAuthProviderRouteWithChildren
   '/api_/public/auth/magic-link': typeof ApiPublicAuthMagicLinkRoute
+  '/api_/public/badge/$handle': typeof ApiPublicBadgeHandleRoute
   '/api_/public/cron/secureshield-billing': typeof ApiPublicCronSecureshieldBillingRoute
   '/api_/public/cron/sync-socials': typeof ApiPublicCronSyncSocialsRoute
   '/api_/public/webhooks/banking': typeof ApiPublicWebhooksBankingRoute
@@ -673,6 +682,7 @@ export interface FileRouteTypes {
     | '/api/auth/$provider/callback'
     | '/api/public/auth/$provider'
     | '/api/public/auth/magic-link'
+    | '/api/public/badge/$handle'
     | '/api/public/cron/secureshield-billing'
     | '/api/public/cron/sync-socials'
     | '/api/public/webhooks/banking'
@@ -739,6 +749,7 @@ export interface FileRouteTypes {
     | '/api/auth/$provider/callback'
     | '/api/public/auth/$provider'
     | '/api/public/auth/magic-link'
+    | '/api/public/badge/$handle'
     | '/api/public/cron/secureshield-billing'
     | '/api/public/cron/sync-socials'
     | '/api/public/webhooks/banking'
@@ -806,6 +817,7 @@ export interface FileRouteTypes {
     | '/api_/auth/$provider/callback'
     | '/api_/public/auth/$provider'
     | '/api_/public/auth/magic-link'
+    | '/api_/public/badge/$handle'
     | '/api_/public/cron/secureshield-billing'
     | '/api_/public/cron/sync-socials'
     | '/api_/public/webhooks/banking'
@@ -857,6 +869,7 @@ export interface RootRouteChildren {
   AuthMastodonCallbackRoute: typeof AuthMastodonCallbackRoute
   ApiPublicAuthProviderRoute: typeof ApiPublicAuthProviderRouteWithChildren
   ApiPublicAuthMagicLinkRoute: typeof ApiPublicAuthMagicLinkRoute
+  ApiPublicBadgeHandleRoute: typeof ApiPublicBadgeHandleRoute
   ApiPublicCronSecureshieldBillingRoute: typeof ApiPublicCronSecureshieldBillingRoute
   ApiPublicCronSyncSocialsRoute: typeof ApiPublicCronSyncSocialsRoute
   ApiPublicWebhooksBankingRoute: typeof ApiPublicWebhooksBankingRoute
@@ -1291,6 +1304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicAuthMagicLinkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api_/public/badge/$handle': {
+      id: '/api_/public/badge/$handle'
+      path: '/api/public/badge/$handle'
+      fullPath: '/api/public/badge/$handle'
+      preLoaderRoute: typeof ApiPublicBadgeHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api_/public/cron/secureshield-billing': {
       id: '/api_/public/cron/secureshield-billing'
       path: '/api/public/cron/secureshield-billing'
@@ -1485,6 +1505,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthMastodonCallbackRoute: AuthMastodonCallbackRoute,
   ApiPublicAuthProviderRoute: ApiPublicAuthProviderRouteWithChildren,
   ApiPublicAuthMagicLinkRoute: ApiPublicAuthMagicLinkRoute,
+  ApiPublicBadgeHandleRoute: ApiPublicBadgeHandleRoute,
   ApiPublicCronSecureshieldBillingRoute: ApiPublicCronSecureshieldBillingRoute,
   ApiPublicCronSyncSocialsRoute: ApiPublicCronSyncSocialsRoute,
   ApiPublicWebhooksBankingRoute: ApiPublicWebhooksBankingRoute,

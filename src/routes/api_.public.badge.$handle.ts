@@ -26,7 +26,7 @@ function badgeSvg(handle: string, verified: boolean) {
 </svg>`;
 }
 
-export const Route = createFileRoute("/api/public/badge/$handle")({
+export const Route = createFileRoute("/api_/public/badge/$handle")({
   server: {
     handlers: {
       GET: async ({ params }) => {
