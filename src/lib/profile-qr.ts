@@ -96,7 +96,7 @@ function inEmblemZone(x: number, y: number, count: number): boolean {
 export function profileQrSvg(
   data: string,
   style: ProfileQrStyle,
-  options: { size?: number; margin?: number; emblemHref?: string | null } = {},
+  options: { size?: number; margin?: number } = {},
 ): string {
   const size = options.size ?? 1024;
   const margin = options.margin ?? 4;
