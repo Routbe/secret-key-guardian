@@ -42,6 +42,16 @@ begin
 end $$;
 
 -- 2. Row Level Security ------------------------------------------------------
+-- Tolerant: de helper bestaat al vanaf migratie 21, maar niet elke omgeving
+-- heeft die uitgevoerd.
+create or replace function public.current_app_user_id()
+returns uuid
+language sql
+stable
+as $$
+  select nullif(current_setting('app.current_user_id', true), '')::uuid
+$$;
+
 alter table public.social_links enable row level security;
 
 drop policy if exists social_links_public_select on public.social_links;
