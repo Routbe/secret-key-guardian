@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BadgeCheck, Mail } from "lucide-react";
 import { blockHref, themeOf, type ProfileRecord } from "@/lib/profile";
 import { SocialPlatformIcon } from "@/lib/social-icons";
+import { PLATFORM_LABEL, formatFollowers } from "@/lib/social-verify";
 import { BadgeShowcase } from "@/components/profile/BadgeShowcase";
 import { VerifiedInfoDialog } from "@/components/profile/VerifiedInfoDialog";
 import { monthYear } from "@/components/profile/VerifiedBadgePopover";
@@ -175,6 +176,30 @@ export function ProfileView({
         )}
 
         <BadgeShowcase userId={profile.id} theme={t} />
+
+        {/* Geverifieerde socials met gecachte volgeraantallen (0 externe calls). */}
+        {(profile.social_links ?? []).length > 0 && (
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            {(profile.social_links ?? []).map((link) => {
+              const followers = formatFollowers(link.followerCount);
+              return (
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="me noopener noreferrer"
+                  title={`${PLATFORM_LABEL[link.platform]} — geverifieerd`}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium transition-opacity hover:opacity-80"
+                  style={{ border: `1px solid ${t.border}`, color: t.muted }}
+                >
+                  <SocialPlatformIcon source={link.url} className="h-3.5 w-3.5 text-current" />
+                  <BadgeCheck className="h-3 w-3 text-emerald-500" aria-hidden />
+                  {followers && <span>{followers} volgers</span>}
+                </a>
+              );
+            })}
+          </div>
+        )}
 
         <div className={`mt-8 grid w-full gap-3 ${wide ? "sm:grid-cols-2" : "grid-cols-1"}`}>
           {blocks.length === 0 && (

@@ -94,6 +94,7 @@ import {
 } from "@/lib/studio-profile.functions";
 import { SubdomainPanel } from "@/components/dashboard/SubdomainPanel";
 import { BadgesPanel } from "@/components/dashboard/BadgesPanel";
+import { SocialVerifyPanel } from "@/components/dashboard/SocialVerifyPanel";
 import { ReferralPanel } from "@/components/dashboard/ReferralPanel";
 import { ReferralAnalytics } from "@/components/dashboard/ReferralAnalytics";
 import { BadgeActivityPanel } from "@/components/dashboard/BadgeActivityPanel";
@@ -850,6 +851,8 @@ export function ProfileEditor() {
                 <ReferralPanel />
                 <ReferralAnalytics />
               </section>
+
+              <SocialVerifyPanel handle={normalized || handle} />
 
               <BadgesPanel />
               <BadgeActivityPanel />

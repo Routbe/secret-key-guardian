@@ -3,6 +3,7 @@
  * Kept deliberately small: handle + identity + an ordered list of blocks.
  */
 import { handleRuleMessage, type HandleRuleContext } from "./handle-rules";
+import type { PublicSocialLink } from "./social-verify";
 import { IDENTITY_MISMATCH_MESSAGE, handleMatchesLegalName } from "./legal-name";
 
 
@@ -39,6 +40,12 @@ export interface ProfileRecord {
   /** Weergavevoorkeuren (badge, watermerk, achtergrond) — zie profile-display.ts. */
   display_prefs?: unknown;
   verified_legal_name?: string | null;
+  /**
+   * Geverifieerde sociale accounts met gecachte volgeraantallen. Deze data komt
+   * uitsluitend uit onze database (`social_links`), nooit uit een externe API
+   * tijdens het laden van de profielpagina.
+   */
+  social_links?: PublicSocialLink[];
 }
 
 export type ProfileTier = "free" | "early_believer";
