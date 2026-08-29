@@ -3,6 +3,7 @@
  * Kept deliberately small: handle + identity + an ordered list of blocks.
  */
 import { handleRuleMessage, type HandleRuleContext } from "./handle-rules";
+import type { PublicSocialLink } from "./social-verify";
 import { IDENTITY_MISMATCH_MESSAGE, handleMatchesLegalName } from "./legal-name";
 
 
