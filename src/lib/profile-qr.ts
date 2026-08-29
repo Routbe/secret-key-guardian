@@ -194,6 +194,16 @@ export function profileQrPdf(
       ops.push(`${px.toFixed(2)} ${py.toFixed(2)} ${unit.toFixed(2)} ${unit.toFixed(2)} re f`);
     }
   }
+  if (style.emblem) {
+    // Massief embleemvlak in het uitgespaarde midden: netjes op print, en de
+    // H-foutcorrectie blijft de code volledig scanbaar houden.
+    const half = Math.max(2, Math.round(count * 0.09));
+    const zone = unit * (half * 2 + 1);
+    const offset = (pt - zone) / 2;
+    ops.push(
+      `${offset.toFixed(2)} ${offset.toFixed(2)} ${zone.toFixed(2)} ${zone.toFixed(2)} re f`,
+    );
+  }
   const content = ops.join("\n");
 
   const objects = [
