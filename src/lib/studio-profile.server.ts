@@ -154,7 +154,13 @@ export async function readPublicProfile(rawHandle: string) {
      where username = ${username} and coalesce(is_banned, false) = false
      limit 1
   `) as Row[];
-  return rows[0] ?? null;
+  const profile = rows[0];
+  if (!profile) return null;
+  // Gecachte sociale volgeraantallen: één goedkope join-vrije query, geen
+  // externe HTTP-calls tijdens het laden van de publieke pagina.
+  const { readPublicSocialLinks } = await import("./social-verify.server");
+  const socialLinks = await readPublicSocialLinks(profile["id"] as string);
+  return { ...profile, social_links: socialLinks } as Row;
 }
 
 /** Aggregated, privacy-clean studio analytics: counts only, no visitor data. */
