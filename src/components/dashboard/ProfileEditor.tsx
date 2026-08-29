@@ -854,6 +854,12 @@ export function ProfileEditor() {
 
               <SocialVerifyPanel handle={normalized || handle} />
 
+              <ProfileQrCard
+                handle={normalized || handle}
+                urlStyle={urlStyle}
+                theme={theme}
+              />
+
               <BadgesPanel />
               <BadgeActivityPanel />
             </>
