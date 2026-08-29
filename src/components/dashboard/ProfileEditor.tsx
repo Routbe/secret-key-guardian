@@ -851,6 +851,8 @@ export function ProfileEditor() {
                 <ReferralAnalytics />
               </section>
 
+              <SocialVerifyPanel handle={normalized || handle} />
+
               <BadgesPanel />
               <BadgeActivityPanel />
             </>
